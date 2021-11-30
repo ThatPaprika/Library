@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,13 +36,10 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
         // Validations
-        $validated = $request->validate([
-            'title' => 'required|max:30',
-            'price' => 'required|numeric|between:2,100'
-        ]);
+        $request->validated();
 
         $result = DB::insert("INSERT INTO books(title, price) VALUES(?, ?)", [$request->title, $request->price]);
 
@@ -82,8 +80,11 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBookRequest $request, $id)
     {
+        // Validations
+        $request->validated();
+
         $result = DB::update('UPDATE books SET title = ?, price = ? WHERE id = ?', [$request->title, $request->price, $id]);
 
         if ($result)
