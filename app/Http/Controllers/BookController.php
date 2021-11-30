@@ -39,8 +39,8 @@ class BookController extends Controller
     {
         // Validations
         $validated = $request->validate([
-            'title' => 'required|min:5|max:255',
-            'price' => 'required|integer'
+            'title' => 'required|max:30',
+            'price' => 'required|numeric|between:2,100'
         ]);
 
         $result = DB::insert("INSERT INTO books(title, price) VALUES(?, ?)", [$request->title, $request->price]);

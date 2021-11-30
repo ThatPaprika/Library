@@ -3,7 +3,7 @@
 @section('title', 'Inserting a book')
 
 @section('content')
-
+    {{-- Comment using blade --}}
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
