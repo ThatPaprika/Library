@@ -37,6 +37,12 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // Validations
+        $validated = $request->validate([
+            'title' => 'required|min:5|max:255',
+            'price' => 'required|integer'
+        ]);
+
         $result = DB::insert("INSERT INTO books(title, price) VALUES(?, ?)", [$request->title, $request->price]);
 
         if ($result)
