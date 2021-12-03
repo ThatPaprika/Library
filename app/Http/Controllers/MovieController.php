@@ -13,10 +13,10 @@ class MovieController extends Controller
     {
         $movies = Movie::all();
 
-        Movie::where('director_id', 1)
+        /* Movie::where('director_id', 1)
         ->orderBy('title')
         ->take(5)
-        ->get();
+        ->get();*/
 
         //dd($movies);
 

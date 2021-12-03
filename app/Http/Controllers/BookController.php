@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -15,7 +16,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = DB::select('SELECT * FROM books');
+        $books = Book::all();
 
         return view('books', ['books' => $books]);
     }
@@ -41,12 +42,15 @@ class BookController extends Controller
         // Validations
         $request->validated();
 
-        $result = DB::insert("INSERT INTO books(title, price) VALUES(?, ?)", [$request->title, $request->price]);
+        $book = new Book;
+        $book->title = $request->title;
+        $book->price = $request->price;
+        $book->author_id = $request->author_id;
 
-        if ($result)
-            return 'Saved the book in the DB.';
+        if ($book->save())
+            return back()->with('success', 'Saved the book in the DB');
         else
-            return 'Something wrong with the DB.';
+            return back()->with('error', 'Something wrong with the DB.');
     }
 
     /**
@@ -68,9 +72,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        $books = DB::select('SELECT * FROM books WHERE id = ' . $id);
+        $book = Book::find($id);
 
-        return view('edit-book', ['book' => $books[0]]);
+        return view('edit-book', ['book' => $book]);
     }
 
     /**
@@ -85,9 +89,12 @@ class BookController extends Controller
         // Validations
         $request->validated();
 
-        $result = DB::update('UPDATE books SET title = ?, price = ? WHERE id = ?', [$request->title, $request->price, $id]);
+        $book = Book::find($id);
+        $book->title = $request->title;
+        $book->price = $request->price;
+        $book->author_id = $request->author_id;
 
-        if ($result)
+        if ($book->save())
             return back()->with('success', 'Updated in the DB');
         else
             return back()->with('error', 'Something wrong with the DB');
@@ -101,7 +108,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $result = DB::delete('DELETE FROM books WHERE id = ?', [$id]);
+        /*$book = Book::find($id);
+        $book->delete();*/
+        $result = Book::destroy($id);
 
         if ($result)
             return back()->with('success', 'Book was deleted from the DB');
