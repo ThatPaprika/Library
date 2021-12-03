@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\BookController;
 
 /*
@@ -45,3 +45,5 @@ Route::get('/books/{id}/delete', [BookController::class, 'destroy'])->name('book
 
 Route::get('/books/{id}', [BookController::class, 'show'])->name('books.details');
 //Route::resource('books', BookController::class);
+
+Route::get('/movies',  [MovieController::class, 'index']);
