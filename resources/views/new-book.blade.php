@@ -30,6 +30,10 @@
         <input type="text" name="title" placeholder="Title"><br>
         <input type="text" name="price" placeholder="Price"><br>
         <input type="number" name="author_id" placeholder="Author id"><br>
+        <select name="type">
+            <option value="thriller">Thriller</option>
+            <option value="fantasy">Fantasy</option>
+        </select><br>
         <input type="submit" value="Insert a new book">
     </form>
 @endsection

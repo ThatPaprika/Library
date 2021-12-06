@@ -26,6 +26,15 @@
         @method('PUT')
         <input type="text" name="title" placeholder="Title" value="{{ $book->title }}"><br>
         <input type="text" name="price" placeholder="Price" value="{{ $book->price }}"><br>
+        <select name="type">
+            <option <?php if ($book->type == 'thriller') {
+    echo 'selected';
+} ?> value="thriller">Thriller</option>
+
+            <option <?php if ($book->type == 'fantasy') {
+    echo 'selected';
+} ?> value="fantasy">Fantasy</option>
+        </select><br>
         <input type="submit" value="Update the book">
     </form>
 @endsection

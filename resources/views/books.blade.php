@@ -16,7 +16,9 @@
     @if (!empty($books))
         @foreach ($books as $book)
             <strong>Title : </strong>{{ $book->title }}<br>
-            <strong>Price : </strong>{{ $book->price }}<br>
+            <strong>Price : </strong>{{ $book->pricewitheuro }}<br>
+            <strong>Type : </strong>{{ $book->type }}<br>
+            <strong>Created at : </strong>{{ $book->createdat }}<br>
             <a href="{{ route('books.details', [$book->id]) }}">Detail page</a><br>
             <a href="{{ route('books.edit', [$book->id]) }}">Edit</a><br>
             <a href="{{ route('books.delete', [$book->id]) }}">Delete</a>

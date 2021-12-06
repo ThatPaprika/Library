@@ -45,6 +45,7 @@ class BookController extends Controller
         $book = new Book;
         $book->title = $request->title;
         $book->price = $request->price;
+        $book->type = $request->type;
         $book->author_id = $request->author_id;
 
         if ($book->save())
@@ -62,8 +63,7 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
-        $book->title = 'NEW TITLLLLE';
-        dd($book);
+
         return view('book-detail', ['book' => $book]);
     }
 
@@ -95,7 +95,7 @@ class BookController extends Controller
         $book = Book::find($id);
         $book->title = $request->title;
         $book->price = $request->price;
-        $book->author_id = $request->author_id;
+        $book->type = $request->type;
 
         if ($book->save())
             return back()->with('success', 'Updated in the DB');
