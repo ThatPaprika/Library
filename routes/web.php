@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,11 @@ Route::get('/authors',  [AuthorController::class, 'index']);
 
 Route::get('/movies',  [MovieController::class, 'index']);
 Route::get('/movies/{id}',  [MovieController::class, 'show']);
+
+
+Route::get('/api/movies',  [ApiController::class, 'movies']);
+Route::get('/api/movies/title={title}',  [ApiController::class, 'moviesByTitle']);
+
+
+Route::get('/read-api',  [ApiController::class, 'read_api']);
+// /api/movies/title=jaws
