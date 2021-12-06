@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\EnsureUserIsLoggedIn;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +32,16 @@ Route::get('/', function () {
 
 
 // Books routes
-Route::get('/books', [BookController::class, 'index']);
+
+/* Apply middleware to many routes : 
+    Route::middleware(EnsureUserIsLoggedIn::class)->group(function () {
+        
+    });
+*/
+
+
+
+Route::get('/books', [BookController::class, 'index'])->middleware(EnsureUserIsLoggedIn::class);
 
 // Show the form :
 Route::get('/books/create', [BookController::class, 'create']);
@@ -49,9 +60,17 @@ Route::get('/books/{id}', [BookController::class, 'show'])->name('books.details'
 //Route::resource('books', BookController::class);
 
 Route::get('/authors',  [AuthorController::class, 'index']);
+Route::get('/login',  [UserController::class, 'login']);
+
+
+
+
+
+// Movie example
 
 Route::get('/movies',  [MovieController::class, 'index']);
 Route::get('/movies/{id}',  [MovieController::class, 'show']);
+
 
 
 /* Book API 
