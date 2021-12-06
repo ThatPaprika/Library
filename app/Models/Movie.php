@@ -9,13 +9,20 @@ class Movie extends Model
 {
     use HasFactory;
 
-    /* Laravel/Eloquent expect :
-        - the table name to be 'movies'
-        - that you have a primary key named 'id'
+    // Accessor : getter
+    public function getTitleAttribute()
+    {
+        return strtoupper($this->attributes['title']);
+    }
 
-    */
-    /*
-    protected $table = 'movie_table';
-    protected $primaryKey = 'movie_id';*/
-    // protected $timestamps = false;
+    /*public function getTitleAttribute($title)
+    {
+        return strtoupper($title);
+    }*/
+
+    // Mutator : setter
+    public function setTitleAttribute($title)
+    {
+        $this->attributes['title'] = strtolower($title);
+    }
 }

@@ -13,17 +13,21 @@ class MovieController extends Controller
     {
         $movies = Movie::all();
 
-        /* Movie::where('director_id', 1)
-        ->orderBy('title')
-        ->take(5)
-        ->get();*/
-
-        //dd($movies);
-
         foreach ($movies as $movie) {
+            /*
+             When calling '$movie->title', it actually call the Accessor (getter)
+            */
             echo $movie->title . '<br>';
             echo $movie->views . '<br>';
             echo '<hr>';
         }
+    }
+
+    public function show($id)
+    {
+        $movie = Movie::find($id);
+        $movie->title = 'NEW TITLEEEEEE';
+
+        dd($movie);
     }
 }

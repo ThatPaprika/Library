@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +48,6 @@ Route::get('/books/{id}', [BookController::class, 'show'])->name('books.details'
 //Route::resource('books', BookController::class);
 
 Route::get('/authors',  [AuthorController::class, 'index']);
+
+Route::get('/movies',  [MovieController::class, 'index']);
+Route::get('/movies/{id}',  [MovieController::class, 'show']);
