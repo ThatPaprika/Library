@@ -54,9 +54,12 @@ Route::get('/movies',  [MovieController::class, 'index']);
 Route::get('/movies/{id}',  [MovieController::class, 'show']);
 
 
-Route::get('/api/movies',  [ApiController::class, 'movies']);
-Route::get('/api/movies/title={title}',  [ApiController::class, 'moviesByTitle']);
+/* Book API 
+- Get all books
+- Get only a specific amount of books (10 books, 25 books)
+- Get all books based on a specific type (Thriller or Fantasy)
+*/
 
-
-Route::get('/read-api',  [ApiController::class, 'read_api']);
-// /api/movies/title=jaws
+Route::get('/api/books',  [ApiController::class, 'books']);
+Route::get('/api/books/type={type}',  [ApiController::class, 'books_type']);
+Route::get('/api/books/{amount}',  [ApiController::class, 'books_amount']);

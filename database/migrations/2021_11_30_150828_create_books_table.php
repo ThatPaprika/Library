@@ -18,6 +18,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->integer('price');
 
+            $table->enum('type', ['thriller', 'fantasy']);
 
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('authors');
