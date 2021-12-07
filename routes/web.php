@@ -71,6 +71,10 @@ Route::post('/login',  [UserController::class, 'login_submit']);
 Route::get('/upload-file',  [UserController::class, 'upload_file']);
 Route::post('/upload-file',  [UserController::class, 'upload_file_submit']);
 
+// Display the register form :
+Route::get('/register',  [UserController::class, 'register']);
+// Submit the form :
+Route::post('/register',  [UserController::class, 'register_submit']);
 
 
 
