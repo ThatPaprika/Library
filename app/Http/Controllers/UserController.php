@@ -8,6 +8,13 @@ class UserController extends Controller
 {
     public function login()
     {
-        return 'Page to login !';
+        return view('login');
+    }
+
+    public function login_submit(Request $request)
+    {
+        session(['email' => $request->email]);
+
+        return 'Login successfully';
     }
 }

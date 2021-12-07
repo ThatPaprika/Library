@@ -60,8 +60,12 @@ Route::get('/books/{id}', [BookController::class, 'show'])->name('books.details'
 //Route::resource('books', BookController::class);
 
 Route::get('/authors',  [AuthorController::class, 'index']);
+
+// Login form :
 Route::get('/login',  [UserController::class, 'login']);
 
+// Submit login form : 
+Route::post('/login',  [UserController::class, 'login_submit']);
 
 
 
